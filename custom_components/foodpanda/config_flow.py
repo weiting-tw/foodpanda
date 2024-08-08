@@ -21,6 +21,7 @@ from .const import (
     CONF_REFRESH_TOKEN,
     CONF_LOCALCODE,
     CONF_X_DEVICE,
+    CONF_X_DEVICE_FINGERPRINT,
     DEFAULT_LOCALCODE,
     LOCALCODES
 )
@@ -44,7 +45,8 @@ async def validate_input(hass: core.HomeAssistant, data):
         CONF_DEVICE_TOKEN: data.get(CONF_DEVICE_TOKEN, ""),
         CONF_REFRESH_TOKEN: data.get(CONF_REFRESH_TOKEN, ""),
         CONF_LOCALCODE: data[CONF_LOCALCODE],
-        CONF_X_DEVICE: data[CONF_X_DEVICE]
+        CONF_X_DEVICE: data[CONF_X_DEVICE],
+        CONF_X_DEVICE_FINGERPRINT: data[CONF_X_DEVICE_FINGERPRINT]
     }
 
     foodpanda_data = foodpandaData(hass, session, login_info)
@@ -68,6 +70,7 @@ class foodpandaFlowHandler(ConfigFlow, domain=DOMAIN):
         self._password: Optional[str] = None
         self._localcode: Optional[str] = None
         self._x_device: Optional[str] = None
+        self._x_device_fingerprint: Optional[str] = None
 
     @staticmethod
     @callback
@@ -120,7 +123,8 @@ class foodpandaFlowHandler(ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_LOCALCODE, default=DEFAULT_LOCALCODE): vol.In(
                     list(LOCALCODES.keys())
                 ),
-                vol.Required(CONF_X_DEVICE, default=''): str
+                vol.Required(CONF_X_DEVICE, default=''): str,
+                vol.Required(CONF_X_DEVICE_FINGERPRINT, default=''): str
             }
         )
 
@@ -159,7 +163,8 @@ class foodpandaFlowHandler(ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_LOCALCODE, default=DEFAULT_LOCALCODE): vol.In(
                     list(LOCALCODES.keys())
                 ),
-                vol.Optional(CONF_X_DEVICE, default=''): str
+                vol.Optional(CONF_X_DEVICE, default=''): str,
+                vol.Optional(CONF_X_DEVICE_FINGERPRINT, default=''): str
             }
         )
 
@@ -191,6 +196,7 @@ class OptionsFlowHandler(OptionsFlow):
     _refresh_token = None
     _localcode = None
     _x_device = None
+    _x_device_fingerprint = None
 
     def __init__(self, config_entry):
         """Initialize options flow."""
@@ -223,6 +229,7 @@ class OptionsFlowHandler(OptionsFlow):
         self._password = self.config_entry.options.get(CONF_PASSWORD, '')
         self._localcode = self.config_entry.options.get(CONF_LOCALCODE, '')
         self._x_device = self.config_entry.options.get(CONF_X_DEVICE, '')
+        self._x_device_fingerprint = self.config_entry.options.get(CONF_X_DEVICE_FINGERPRINT, '')
 
         return self.async_show_form(
             step_id="cloud",
@@ -232,7 +239,8 @@ class OptionsFlowHandler(OptionsFlow):
                     vol.Required(CONF_LOCALCODE, default=self._localcode): vol.In(
                         list(LOCALCODES.keys())
                     ),
-                    vol.Required(CONF_X_DEVICE, default=self._x_device): str
+                    vol.Required(CONF_X_DEVICE, default=self._x_device): str,
+                    vol.Required(CONF_X_DEVICE_FINGERPRINT, default=self._x_device_fingerprint): str
                 }
             ),
             errors=errors
@@ -262,6 +270,7 @@ class OptionsFlowHandler(OptionsFlow):
         self._refresh_token = self.config_entry.options.get(CONF_REFRESH_TOKEN, '')
         self._localcode = self.config_entry.options.get(CONF_LOCALCODE, '')
         self._x_device = self.config_entry.options.get(CONF_X_DEVICE, '')
+        self._x_device_fingerprint = self.config_entry.options.get(CONF_X_DEVICE_FINGERPRINT, '')
 
         return self.async_show_form(
             step_id=CONF_TOKEN,
@@ -273,7 +282,8 @@ class OptionsFlowHandler(OptionsFlow):
                     vol.Required(CONF_LOCALCODE, default=self._localcode): vol.In(
                         list(LOCALCODES.keys())
                     ),
-                    vol.Optional(CONF_X_DEVICE, default=self._x_device): str
+                    vol.Optional(CONF_X_DEVICE, default=self._x_device): str,
+                    vol.Optional(CONF_X_DEVICE_FINGERPRINT, default=self._x_device_fingerprint): str
                 }
             ),
             errors=errors

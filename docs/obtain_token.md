@@ -10,4 +10,4 @@
 1. Open the development tools (use Google chrome/Microsoft Edge) [Crtl+Shift+I / F12]
 2. Login foodpanda account and verified by email
 3. Open the Network tab on the console
-4. Search "login" in filter box, got to header tab, find the value of x-device
+4. Search "login" in filter box, got to header tab, find the value of x-device & x-device-fingerprint

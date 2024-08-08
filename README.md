@@ -24,7 +24,7 @@ Then restart HA.
    1. If the integration didn't show up in the list please REFRESH the page
    2. If the integration is still not in the list, you need to clear the browser cache.
 2. Enter the account and password or enter tokens if use Facebook or Google login (For Hongkong, only tokens method).
-3. The x-device field is required if using account and password to login. You can get x-device according to [obtain_token](https://github.com/tsunglung/foodpanda/blob/master/docs/obtain_token.md#obtain-x-device)
+3. The x-device & x-device-fingerprint field is required if using account and password to login. You can get x-device & x-device-fingerprint according to [obtain_token](https://github.com/tsunglung/foodpanda/blob/master/docs/obtain_token.md#obtain-x-device)
 
 # Notice
 You need login foodpanda in Web Browser once. Then login in foodpanda integration of HA.

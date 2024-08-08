@@ -36,7 +36,9 @@ from .const import (
     CONF_SESSIONID,
     CONF_USERSOURCE,
     CONF_X_DEVICE,
+    CONF_X_DEVICE_FINGERPRINT,
     DEFAULT_X_DEVICE,
+    DEFAULT_X_DEVICE_FINGERPRINT,
     DOMAIN,
     HA_USER_AGENT,
     REQUEST_TIMEOUT,
@@ -70,6 +72,7 @@ class foodpandaData():
         self._token_timeout = 0
         self._refresh_token_timeout = 0
         self._x_device = login_info[CONF_X_DEVICE] if len(login_info[CONF_X_DEVICE]) >= 1 else DEFAULT_X_DEVICE
+        self._x_device_fingerprint = login_info[CONF_X_DEVICE_FINGERPRINT] if len(login_info[CONF_X_DEVICE_FINGERPRINT]) >= 1 else DEFAULT_X_DEVICE_FINGERPRINT
         self._clientid = None
         self._sessionid = None
         self._usersource = "volo"
@@ -100,6 +103,7 @@ class foodpandaData():
             CONTENT_TYPE: CONTENT_TYPE_JSON,
             ACCEPT: 'application/json, text/plain, */*',
             'x-device': self._x_device,
+            'x-device-fingerprint': self._x_device_fingerprint,
             'x-otp-method': 'EMAIL',
         }
         payload={
@@ -164,6 +168,7 @@ class foodpandaData():
             CONTENT_TYPE: f"{CONTENT_TYPE_JSON};charset=UTF-8",
             ACCEPT: 'application/json, text/plain, */*',
             'x-device': self._x_device,
+            'x-device-fingerprint': self._x_device_fingerprint,
             'x-otp-method': 'EMAIL',
         }
 
@@ -229,6 +234,7 @@ class foodpandaData():
                 CONF_SESSIONID: self._sessionid,
                 CONF_USERSOURCE: self._usersource,
                 CONF_X_DEVICE: self._x_device,
+                CONF_X_DEVICE_FINGERPRINT: self._x_device_fingerprint,
                 CONF_LOCALCODE: self._localcode
             }
 
@@ -255,6 +261,7 @@ class foodpandaData():
                 CONF_REFRESH_TOKEN: self._refresh_token,
                 CONF_REFRESH_TOKEN_TIMEOUT: self._refresh_token_timeout,
                 CONF_X_DEVICE: self._x_device,
+                CONF_X_DEVICE_FINGERPRINT: self._x_device_fingerprint,
                 CONF_CLIENTID: self._clientid,
                 CONF_SESSIONID: self._sessionid,
                 CONF_USERSOURCE: self._usersource,
@@ -290,6 +297,7 @@ class foodpandaData():
         self._sessionid = tokens.get(CONF_SESSIONID, "")
         self._usersource = tokens.get(CONF_USERSOURCE, "volo")
         self._x_device = tokens.get(CONF_X_DEVICE, "")
+        self._x_device_fingerprint = tokens.get(CONF_X_DEVICE_FINGERPRINT, "")
 
         if not isinstance(token_timeout, str):
             token_timeout = "1577836800"
@@ -328,6 +336,7 @@ class foodpandaData():
                 CONF_SESSIONID: self._sessionid,
                 CONF_USERSOURCE: self._usersource,
                 CONF_X_DEVICE: self._x_device,
+                CONF_X_DEVICE_FINGERPRINT: self._x_device_fingerprint,
                 CONF_LOCALCODE: self._localcode
             })
 
@@ -348,6 +357,7 @@ class foodpandaData():
                 CONF_SESSIONID: self._sessionid,
                 CONF_USERSOURCE: self._usersource,
                 CONF_X_DEVICE: self._x_device,
+                CONF_X_DEVICE_FINGERPRINT: self._x_device_fingerprint,
                 CONF_LOCALCODE: self._localcode
             })
 

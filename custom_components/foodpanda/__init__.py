@@ -17,9 +17,11 @@ from .const import (
     CONF_REFRESH_TOKEN,
     CONF_TOKEN_TIMEOUT,
     CONF_X_DEVICE,
+    CONF_X_DEVICE_FINGERPRINT,
     DEFAULT_SCAN_INTERVAL,
     DEFAULT_LOCALCODE,
     DEFAULT_X_DEVICE,
+    DEFAULT_X_DEVICE_FINGERPRINT,
     DOMAIN,
     FOODPANDA_COORDINATOR,
     FOODPANDA_DATA,
@@ -43,7 +45,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry):
         CONF_DEVICE_TOKEN: _get_config_value(config_entry, CONF_DEVICE_TOKEN, ""),
         CONF_REFRESH_TOKEN: _get_config_value(config_entry, CONF_REFRESH_TOKEN, ""),
         CONF_LOCALCODE: _get_config_value(config_entry, CONF_LOCALCODE, DEFAULT_LOCALCODE),
-        CONF_X_DEVICE: _get_config_value(config_entry, CONF_X_DEVICE, DEFAULT_X_DEVICE)
+        CONF_X_DEVICE: _get_config_value(config_entry, CONF_X_DEVICE, DEFAULT_X_DEVICE),
+        CONF_X_DEVICE_FINGERPRINT: _get_config_value(config_entry, CONF_X_DEVICE_FINGERPRINT, DEFAULT_X_DEVICE_FINGERPRINT)
     }
 
     # migrate data (also after first setup) to options
@@ -65,6 +68,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry):
         tokens[CONF_PASSWORD] = _get_config_value(config_entry, CONF_PASSWORD, "")
         tokens[CONF_LOCALCODE] = _get_config_value(config_entry, CONF_LOCALCODE, CONF_LOCALCODE)
         tokens[CONF_X_DEVICE] = _get_config_value(config_entry, CONF_X_DEVICE, DEFAULT_X_DEVICE)
+        tokens[CONF_X_DEVICE_FINGERPRINT] = _get_config_value(config_entry, CONF_X_DEVICE_FINGERPRINT, DEFAULT_X_DEVICE_FINGERPRINT)
         foodpanda_data = foodpandaData(hass, session, tokens)
     else:
         foodpanda_data = foodpandaData(hass, session, login_info)

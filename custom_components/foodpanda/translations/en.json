@@ -22,7 +22,8 @@
                     "username": "Username",
                     "password": "Password",
                     "localcode": "Local Code",
-                    "x_device": "x_device"
+                    "x_device": "x_device",
+                    "x_device_fingerprint": "x_device_fingerprint"
                 },
                 "description": "Please enter connection settings of your foodpanda."
             },
@@ -34,7 +35,8 @@
                     "device_token": "Device Token",
                     "refresh_token": "Refresh Token",
                     "localcode": "Local Code",
-                    "x_device": "x_device"
+                    "x_device": "x_device",
+                    "x_device_fingerprint": "x_device_fingerprint"
               },
               "description": "You have to manually obtain foodpanda [tokens](https://github.com/tsunglung/foodpanda/blob/master/docs/obtain_token.md)."
             }
@@ -47,7 +49,8 @@
                 "data": {
                     "password": "Password",
                     "localcode": "Local Code",
-                    "x_device": "x_device"
+                    "x_device": "x_device",
+                    "x_device_fingerprint": "x_device_fingerprint"
                 }
             },
             "token": {
@@ -57,7 +60,8 @@
                     "device_token": "Device Token",
                     "refresh_token": "Refresh Token",
                     "localcode": "Local Code",
-                    "x_device": "x_device"
+                    "x_device": "x_device",
+                    "x_device_fingerprint": "x_device_fingerprint"
                 }
             }
         }
